@@ -1,7 +1,7 @@
  
 const config = {
     env: {
-      SECRET_JWT: 'secretjwt' 
+      SECRET_JWT: process.env.SECRET_JWT
     },
   };
   
