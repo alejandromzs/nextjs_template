@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+ 
+const config = {
+    env: {
+      SECRET_JWT: 'secretjwt' 
+    },
+  };
+  
+  export default config;

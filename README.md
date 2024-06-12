@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Libraries Restrictions
+* Using "jsonwebtoken": "8.5.1" due to the 9.0.2 has issues verifying the token https://github.com/auth0/node-jsonwebtoken/issues/939
+
+## PENDING
+* next.config.mjs cointains the env. Correct? To check
+* user is checking only the first user password 
+
+
+
+
 ## Getting Started
 
 First, run the development server:
