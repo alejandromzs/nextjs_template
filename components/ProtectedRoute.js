@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; 
 import { verifyToken } from '../utils/auth';
 
+
 const ProtectedRoute = ({ children, onAuth }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   const router = useRouter();

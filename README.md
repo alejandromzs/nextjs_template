@@ -1,10 +1,31 @@
+# Features
+* Registration:
+    * pages/api/register
+    * pages/register
+* Login:
+    * pages/api/login
+    * pages/login
+* ProtectedRoutes:
+    * components/protectedRoute
+* rateLimiter: To limit the number of times an ip can call to an api
+    * utils/rateLimiter.js
+        * 4 max per ip in 1 minute
+    * pages/api/register.js
+* jsonwebtoken authentication:
+    * utils/auth.js
+* save & read CSV:
+    * utils/users.js
+    * public/users.csv
+
+
+
 ## Libraries Restrictions
 * Using "jsonwebtoken": "8.5.1" due to the 9.0.2 has issues verifying the token https://github.com/auth0/node-jsonwebtoken/issues/939
  
-# Configurations
-    * net.config.mjs will get env info from .env.local
-    * create .env.local with valide details:
-        * SECRET_JWT='yourSecretHere' 
+## Configurations
+* net.config.mjs will get env info from .env.local
+* create .env.local with valide details:
+    * SECRET_JWT='yourSecretHere' 
 
 
 
