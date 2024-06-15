@@ -16,6 +16,16 @@
 * save & read CSV:
     * utils/users.js
     * public/users.csv
+* standard Library: To lint code
+    * npm install standard -b 
+    * package.json: Configured to use standard for eslintconfig
+* db-local Library: To configure a local db instead of csv
+    * npm istall db-local
+    * Use for testing only
+    * lib/repositories/userRepository.js
+        * utils.users.js to userRepository.js
+        * Additional validations:
+            * Before register the user, the user shouldn't exist
 
 
 

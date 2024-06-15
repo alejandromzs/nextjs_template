@@ -1,30 +1,32 @@
 // /pages/api/register.js
-import { addUser } from '../../utils/users';
-import { limiter } from '../../utils/rateLimiter'; 
+import runMiddleware,{ limiter } from '../../utils/rateLimiter'; 
+import { userRepository } from '../.././/src/lib/repositories/userRepository';
  
 
 const registerHandler = async (req, res) => {
-    limiter(req, res, async () => {
+  try{
+    await runMiddleware(req, res, limiter);
+
       if (req.method === 'POST') {
-        const { username, password } = req.body;
-
-        // Validate Fields
-        if (!username || !password) {
-          return res.status(400).json({ error: 'All fields are required' });
-        } 
-
+        const { username, password } = req.body; 
+        // Validation moved to userRepository 
         try {
-          await addUser(username, password, 'standard');
-          res.status(201).json({ message: 'User created successfully' });
+          const id = await userRepository.create({username,password})
+          console.log(id)
+          return res.status(201).json({id: id});
         } catch (error) {
-          console.log(error);
-          res.status(500).json({ error: 'Error creating user' });
+          //Recommended not return error from DB but one with less information
+          //console.log(error)
+          return res.status(400).json({ error: 'Error creating user' });
           
         }
       } else {
-        res.status(405).json({ error: 'Method not allowed' });
+        return await res.status(405).json({ error: 'Method not allowed' });
       }
-    }); 
+      
+   } catch (error) { 
+     return res.status(500).json({ error: 'Internal server error' });
+   } 
 };
  
 export default registerHandler;
