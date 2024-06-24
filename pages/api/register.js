@@ -11,8 +11,7 @@ const registerHandler = async (req, res) => {
         const { username, password } = req.body; 
         // Validation moved to userRepository 
         try {
-          const id = await userRepository.create({username,password})
-          console.log(id)
+          const id = await userRepository.create({username,password}) 
           return res.status(201).json({id: id});
         } catch (error) {
           //Recommended not return error from DB but one with less information

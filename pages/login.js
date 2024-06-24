@@ -1,6 +1,7 @@
 // /pages/login.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie'; 
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -17,10 +18,16 @@ const LoginPage = () => {
       body: JSON.stringify({ username, password }),
     });  
     if (response.ok) {
-      const data = await response.json();
-      localStorage.setItem('token', data.token);  
-      localStorage.setItem('username', data.username);
-      localStorage.setItem('role', data.role);
+      const data = await response.json(); 
+      //Cookies.set('token', data.token, { expires: 1, sameSite: 'strict', secure: true, httpOnly: true });
+      //Cookies.set('username', data.username, { expires: 1 });
+      //Cookies.set('role', data.role, { expires: 1 });
+
+      //localstorage replaced by cookies as part of api/login
+      // localStorage.setItem('token', data.token);  
+      // localStorage.setItem('username', data.username);
+      // localStorage.setItem('role', data.role);
+
       router.push('/dashboard');
     } else {
       alert('Invalid credentials');

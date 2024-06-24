@@ -11,8 +11,10 @@
     * utils/rateLimiter.js
         * 4 max per ip in 1 minute
     * pages/api/register.js
-* jsonwebtoken authentication:
+* jsonwebtoken authentication: (Not save in anyStorage. Less risky to use with Cookies)
+    * httponly; true  //Cookie only can be accessible on server
     * utils/auth.js
+    *
 * save & read CSV:
     * utils/users.js
     * public/users.csv

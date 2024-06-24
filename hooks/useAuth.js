@@ -1,15 +1,19 @@
 // /hooks/useAuth.js
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie'; 
 
 const useAuth = () => {
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
   const router = useRouter();
 
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    const role = localStorage.getItem('role');
+  useEffect(() => { 
+    const username = Cookies.get('username');
+    const role = Cookies.get('role');
+    //const token = Cookies.getItem('token');
+    // const username = localStorage.getItem('username');
+    // const role = localStorage.getItem('role');
     if (username && role) {
       setUsername(username);
       setRole(role);

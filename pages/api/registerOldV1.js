@@ -16,8 +16,7 @@ const registerHandler = async (req, res) => {
         try {
           await addUser(username, password, 'standard');
           res.status(201).json({ message: 'User created successfully' });
-        } catch (error) {
-          console.log(error);
+        } catch (error) { 
           res.status(500).json({ error: 'Error creating user' });
           
         }
