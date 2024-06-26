@@ -23,9 +23,15 @@ const useAuth = () => {
   }, [router]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
+  //Removing Cookies
+  Cookies.remove('token');
+  Cookies.remove('username');
+  Cookies.remove('role');
+
+  //REMOVING from LocalStorage old way
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('username');
+    // localStorage.removeItem('role');
     router.push('/login');
   };
 
