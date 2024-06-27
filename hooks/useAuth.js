@@ -6,17 +6,19 @@ import Cookies from 'js-cookie';
 const useAuth = () => {
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
+  const [token, setToken] = useState('');
   const router = useRouter();
 
   useEffect(() => { 
     const username = Cookies.get('username');
     const role = Cookies.get('role');
-    //const token = Cookies.getItem('token');
+    const token = Cookies.get('token');
     // const username = localStorage.getItem('username');
     // const role = localStorage.getItem('role');
-    if (username && role) {
+    if (username && role && token) {
       setUsername(username);
       setRole(role);
+      setToken(token);
     } else {
       router.push('/login');
     }
@@ -28,6 +30,11 @@ const useAuth = () => {
   Cookies.remove('username');
   Cookies.remove('role');
 
+   // Clear states
+   setUsername('');
+   setRole('');
+   setToken('');
+
   //REMOVING from LocalStorage old way
     // localStorage.removeItem('token');
     // localStorage.removeItem('username');
@@ -35,7 +42,7 @@ const useAuth = () => {
     router.push('/login');
   };
 
-  return { username, role, handleLogout, setAuth: (username, role) => { setUsername(username); setRole(role); } };
+  return { username, role, token,handleLogout, setAuth: (username, role,token) => { setUsername(username); setRole(role); setToken(token); } };
 };
 
 export default useAuth;
