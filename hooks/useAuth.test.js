@@ -1,12 +1,3 @@
-// /hooks/useAuth.test.js
-
-//babel.config.js
-//jest.config.js
-//jest.setup.ks
-//package.json
-
-
-// import { renderHook, act } from '@testing-library/react-hooks';
 import { useRouter } from 'next/router';
 import { renderHook, act } from '@testing-library/react';
 import Cookies from 'js-cookie';
@@ -28,58 +19,57 @@ describe('useAuth hook', () => {
     beforeEach(() => {
         routerPush = jest.fn();
         useRouter.mockReturnValue({ push: routerPush });
+
+         // Mock inital COOKIES
+        Cookies.get.mockImplementation((key) => {
+            switch (key) {
+            case 'username':
+                return 'testuser';
+            case 'role':
+                return 'admin';
+            case 'token':
+                return 'dummytoken';
+            default:
+                return null;
+            }
+        });
     })
 
     afterEach(() => {
         jest.clearAllMocks();
-      });
-//   beforeEach(() => {
-//     Cookies.get = jest.fn();
-//     Cookies.remove = jest.fn();
-//   });
+      });  
 
-//   it('should set auth state from cookies on mount', () => {
-//     Cookies.get.mockImplementation((key) => {
-//       switch (key) {
-//         case 'username':
-//           return 'testuser';
-//         case 'role':
-//           return 'admin';
-//         case 'token':
-//           return 'dummytoken';
-//         default:
-//           return null;
-//       }
-//     });
-
-//     const { result } = renderHook(() => useAuth(), { wrapper: AuthProvider });
-
-//     expect(result.current.username).toBe('testuser');
-//     expect(result.current.role).toBe('admin');
-//     expect(result.current.token).toBe('dummytoken');
-//   });
+  it('should redirect to login on logout', () => {
+        const { result } = renderHook(() => useAuth());
+    
+        act(() => {
+            result.current.handleLogout();
+        });
+    
+        expect(routerPush).toHaveBeenCalledWith('/login');
+    });
+    
+    it('should set auth state and cookies when setAuth is called', () => {
+        const { result } = renderHook(() => useAuth());
+    
+        act(() => {
+            result.current.setAuth('newuser', 'userrole', 'newtoken');
+        });
+    
+        expect(result.current.username).toBe('newuser');
+        expect(result.current.role).toBe('userrole');
+        expect(result.current.token).toBe('newtoken');
+        // Optionally, check if Cookies.set was called if you modify the hook to set cookies
+    });
 
   it('should remove cookies and clear auth state on logout', () => {
-     // Mocke inital COOKIES
-    Cookies.get.mockImplementation((key) => {
-        switch (key) {
-        case 'username':
-            return 'testuser';
-        case 'role':
-            return 'admin';
-        case 'token':
-            return 'dummytoken';
-        default:
-            return null;
-        }
-    });
     
     const { result } = renderHook(() => useAuth());
 
     // Verify initial STATE
-        expect(result.current.username).toBe('testuser');
-        expect(result.current.role).toBe('admin');
-        expect(result.current.token).toBe('dummytoken');
+    expect(result.current.username).toBe('testuser');
+    expect(result.current.role).toBe('admin');
+    expect(result.current.token).toBe('dummytoken');
 
         //act as we call to handleLogout
     act(() => {

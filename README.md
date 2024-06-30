@@ -28,27 +28,16 @@
         * Additional validations:
             * Before register the user, the user shouldn't exist
 * jest
-    * Installation manual:
-        * npm install --save-dev jest
-        * npm install jest --global (to run jest with different configs)
-            * jest my-test --notify --config=config.json
-        * npm init jest@latest
-            * to create configuration file
-        * npm install --save-dev babel-jest @babel/core @babel/preset-env
-            * To use Babel
-        * babel.config.js   (Config will depend on project: https://babeljs.io/docs/)
-            *   module.exports = {
-                presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
-                };
-        * npm install --save-dev @babel/preset-typescript
-            * For typescript 
-            * It will need to add '@babel/preset-typescript',
-            * Additional details to review: ts-jest, @jest/globals, @types/jest
-        * eslint
-    * Real installation
+    * main (used) configurations:
         * npm install --save-dev jest @testing-library/react @testing-library/jest-dom jest-environment-jsdom
         * new file named jest.config.js
-        * package.json: "test": "jest --watch"
+        * package.json: "testw": "jest --watch", "test": "jest" --> npm test or npm testw
+    * Alternatives (Not used):
+            * npm install jest --global (to run jest with different configs)
+                * jest my-test --notify --config=config.json
+            * npm init jest@latest
+                * to create configuration file
+            * etc... 
 
 
 ## Libraries Restrictions
