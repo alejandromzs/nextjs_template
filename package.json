@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "testw": "jest --watch"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

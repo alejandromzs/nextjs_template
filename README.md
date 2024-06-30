@@ -31,7 +31,7 @@
     * main (used) configurations:
         * npm install --save-dev jest @testing-library/react @testing-library/jest-dom jest-environment-jsdom
         * new file named jest.config.js
-        * package.json: "testw": "jest --watch", "test": "jest" --> npm test or npm testw
+        * package.json: "test:watch": "jest --watch", "test": "jest" --> npm test or npm testw
     * Alternatives (Not used):
             * npm install jest --global (to run jest with different configs)
                 * jest my-test --notify --config=config.json
